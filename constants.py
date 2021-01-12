@@ -1,5 +1,18 @@
 import datetime
 
+# stickers for error messages
+stickers = ['CAACAgIAAxkBAAEBwoJf_Ulg-lcGG-e-pDjxCytVeN-W6wAC8wADVp29Cmob68TH-pb-HgQ',
+            'CAACAgIAAxkBAAEBwoRf_Ulmdoyt4eGL7jGZEwveO2zJ2AACCQEAAladvQrWZlyD1z-oHR4E',
+            'CAACAgIAAxkBAAEBwoZf_UlsfCSz9YJmqIVDNEMiaT_U7gACTQIAAladvQoLpdXvP7GXfx4E'
+            'CAACAgIAAxkBAAEBwpRf_Vn-I2DCn85s8_mlC4y6DlbCUwACCwEAAladvQpOseemCPvtSR4E',
+            'CAACAgIAAxkBAAEBwpJf_VnxzbcjvW3KZzlYmwXbhSABxgACBQEAAladvQq35P22DkVfdx4E',
+            'CAACAgIAAxkBAAEBwpBf_VniIPtKoKewheioB8H9HOnDAQACcgQAAuce7AXKSuGZ_F_atx4E',
+            'CAACAgIAAxkBAAEBwo5f_Vnd1SqhOWRjF8uGuzhZzdTCMQACagQAAuce7AW6DxsEpcJEyR4E',
+            'CAACAgIAAxkBAAEBwoxf_VnZIyRszXaUx2rhMbwaXity3QACXAQAAuce7AUmmbsbikWzNB4E',
+            'CAACAgIAAxkBAAEBwopf_VnV4jGR1H3TEbm6DXuhn_JE5AACQAQAAuce7AXntkQVeFOqGh4E',
+            'CAACAgIAAxkBAAEBwohf_VnPmvoUIRCmuoqy_lwYzoJ1GAACIQQAAuce7AWY2vXU1ZNj6x4E']
+
+# all available weather maps
 weather_modes = {"rains": "APCP",
                  "temp": "TMP2m",
                  "wind": "GUST10m",
@@ -18,9 +31,10 @@ weather_modes = {"rains": "APCP",
                  "tmp500": "TMP500",
                  "tmp300": "TMP300",
                  "k_index": "KIND",
-                 "fact/vis": "AVIA_VISIB",
-                 "fact/cloud": "HIGH_CL"}
+                 "vis": "AVIA_VISIB",
+                 "cloud": "HIGH_CL"}
 
+# all available weather prediction models, with synonyms
 wrf3 = 'https://meteoinfo.by/maps/wrf3/images-00/'
 wrf = wrf3
 ukmet = 'https://meteoinfo.by/maps/egrr/'
@@ -34,6 +48,7 @@ ngps = navgem
 
 alt_models = ('egrr', 'ukmet', 'gfs', 'ncep', 'gem', 'cmc', 'ngps', 'navgem')
 
+# link to avia maps
 fact = 'https://meteoinfo.by/maps/fact/'
 
 days = []
