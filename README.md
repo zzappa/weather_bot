@@ -5,6 +5,7 @@ Commands can be used as /cmd xx model_name, where:
 - xx - number between 2 and 120 (hours). For different models and modes different time intervals are available.
 - model_name - one of ('wrf', 'wrf3'), ('egrr', 'ukmet'), ('gfs', 'ncep'), ('gem', 'cmc') ('avia', 'fact') (synonyms are given in parenthesis).
 
+![](weather_bot.png)
 
 #### All available commands
 ##### WRF3 commands
