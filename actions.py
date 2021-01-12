@@ -9,37 +9,19 @@ from constants import (weather_modes,
                        ukmet,
                        gem,
                        gfs,
-                       fact_avia_cloud,
-                       fact_avia_visib,
-                       today,
-                       today_06_utc,
-                       today_12_utc,
-                       today_18_utc)
+                       fact,
+                       days)
 
 
 def return_img(mode, interval='02', model='wrf3'):
-    date = today
-    if model.lower() == "avia/cloud":
-        link = fact_avia_cloud
-    elif model.lower() == "avia/vis":
-        link = fact_avia_visib
-    elif model.lower() in alt_models:
-        if model.lower() in ('gfs', 'ncep'):
-            link = gfs
-            date = today_06_utc
-        elif model.lower() in ('gem', 'cmc'):
-            link = gem
-        else:
-            link = ukmet
-    else:
-        link = wrf3
+    link = _get_link(model)
     if len(interval) not in (2, 3):
         interval = '24'
     if mode in weather_modes:
         prefix = weather_modes[mode]
-        for time in (date, today_06_utc, today_12_utc, today_18_utc):
+        for day in days:
             try:
-                url = f'{link}{prefix}_{time}_{interval}.png'
+                url = f'{link}{prefix}_{day}_{interval}.png'
                 logging.warning(url)
                 img = requests.get(url)
                 i = Image.open(BytesIO(img.content))
@@ -47,3 +29,18 @@ def return_img(mode, interval='02', model='wrf3'):
             except Exception:
                 pass
         return
+
+
+def _get_link(model='wrf3'):
+    if model.lower() in ("avia", "fact"):
+        link = fact
+    elif model.lower() in alt_models:
+        if model.lower() in ('gfs', 'ncep'):
+            link = gfs
+        elif model.lower() in ('gem', 'cmc'):
+            link = gem
+        else:
+            link = ukmet
+    else:
+        link = wrf3
+    return link

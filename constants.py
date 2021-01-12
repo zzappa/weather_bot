@@ -19,7 +19,7 @@ weather_modes = {"rains": "APCP",
                  "tmp300": "TMP300",
                  "k_index": "KIND",
                  "fact/vis": "AVIA_VISIB",
-                 "fact/cloud": "HIGH_CL_"}
+                 "fact/cloud": "HIGH_CL"}
 
 wrf3 = 'https://meteoinfo.by/maps/wrf3/images-00/'
 wrf = wrf3
@@ -34,10 +34,12 @@ ngps = navgem
 
 alt_models = ('egrr', 'ukmet', 'gfs', 'ncep', 'gem', 'cmc', 'ngps', 'navgem')
 
-fact_avia_cloud = 'https://meteoinfo.by/maps/fact/HIGH_CL_'
-fact_avia_visib = 'https://meteoinfo.by/maps/fact/AVIA_VISIB_'
+fact = 'https://meteoinfo.by/maps/fact/'
 
-today = datetime.date.today().strftime("%Y%m%d%H")
-today_06_utc = today[:-1] + '6'
-today_12_utc = today[:-2] + '12'
-today_18_utc = today[:-2] + '18'
+days = []
+for n in range(3):
+    day = (datetime.date.today() - datetime.timedelta(days=n)).strftime("%Y%m%d%H")
+    days.append(day)
+    days.append(day[:-1] + '6')
+    days.append(day[:-2] + '12')
+    days.append(day[:-2] + '18')
