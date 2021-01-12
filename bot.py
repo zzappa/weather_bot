@@ -8,6 +8,9 @@ bot = telebot.TeleBot('insert-yout-token')
 
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
+    def _send_error_msg():
+        bot.send_sticker(message.chat.id, 'CAACAgIAAxkBAAEBwntf_UQG6Ew3Y_VPxkTfkdLNDb1otQACeAIAAhjxzQ0ZmFOKx2fSYR4E')
+        bot.send_message(message.from_user.id, "smth went wrong")
     msg = message.text.split(' ')
     if msg[0][1:] in weather_modes:
         try:
@@ -20,11 +23,11 @@ def get_text_messages(message):
             if i != None:
                 bot.send_photo(message.from_user.id, i)
             else:
-                bot.send_message(message.from_user.id, "smth went wrong")
+                _send_error_msg()
         except Exception:
-            bot.send_message(message.from_user.id, "smth went wrong")
+            _send_error_msg()
     else:
-        bot.send_message(message.from_user.id, "smth went wrong")
+        _send_error_msg()
 
 
 bot.polling(none_stop=True, interval=0)
