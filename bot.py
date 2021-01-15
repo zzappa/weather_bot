@@ -1,12 +1,11 @@
-import telebot
 import random
 
 from constants import weather_modes, alt_models, stickers
 from cities import cities
 from actions import get_weather_map, get_current_weather
+from forecast import my_weather
 
-bot = telebot.TeleBot('insert-yout-token')
-
+from bot_init import bot
 
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
@@ -34,8 +33,10 @@ def get_text_messages(message):
             bot.send_message(message.from_user.id, current_weather)
         else:
             _send_error_msg()
+    elif msg[0] == '/weather':
+        my_weather(message)
     else:
-        _send_error_msg()
+        pass
 
 
 bot.polling(none_stop=True, interval=0)
