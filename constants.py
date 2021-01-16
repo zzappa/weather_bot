@@ -12,6 +12,10 @@ stickers = ['CAACAgIAAxkBAAEBwoJf_Ulg-lcGG-e-pDjxCytVeN-W6wAC8wADVp29Cmob68TH-pb
             'CAACAgIAAxkBAAEBwopf_VnV4jGR1H3TEbm6DXuhn_JE5AACQAQAAuce7AXntkQVeFOqGh4E',
             'CAACAgIAAxkBAAEBwohf_VnPmvoUIRCmuoqy_lwYzoJ1GAACIQQAAuce7AWY2vXU1ZNj6x4E']
 
+cold_sticker = 'CAACAgIAAxkBAAEBwoRf_Ulmdoyt4eGL7jGZEwveO2zJ2AACCQEAAladvQrWZlyD1z-oHR4E'
+hot_sticker = 'CAACAgIAAxkBAAEBwoxf_VnZIyRszXaUx2rhMbwaXity3QACXAQAAuce7AUmmbsbikWzNB4E'
+rains_sticker = 'CAACAgIAAxkBAAEBwoZf_UlsfCSz9YJmqIVDNEMiaT_U7gACTQIAAladvQoLpdXvP7GXfx4E'
+
 # all available weather maps
 weather_modes = {"rains": "APCP",
                  "temp": "TMP2m",

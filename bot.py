@@ -1,9 +1,10 @@
 import random
 
-from constants import weather_modes, alt_models, stickers
+from constants import weather_modes, stickers
 from cities import cities
-from actions import get_weather_map, get_current_weather
-from forecast import my_weather
+from weather_maps import get_weather_map
+from current_weather import get_current_weather
+from forecast import get_forecast
 
 from bot_init import bot
 
@@ -34,7 +35,7 @@ def get_text_messages(message):
         else:
             _send_error_msg()
     elif msg[0] == '/weather':
-        my_weather(message)
+        get_forecast(message)
     else:
         pass
 

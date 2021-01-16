@@ -2,17 +2,11 @@ import logging
 
 import pyowm
 
-from bot_init import bot
+from bot_init import bot, owm_token
+from constants import cold_sticker, hot_sticker, rains_sticker
 
 
-cold_sticker = 'CAACAgIAAxkBAAEBwoRf_Ulmdoyt4eGL7jGZEwveO2zJ2AACCQEAAladvQrWZlyD1z-oHR4E'
-hot_sticker = 'CAACAgIAAxkBAAEBwoxf_VnZIyRszXaUx2rhMbwaXity3QACXAQAAuce7AUmmbsbikWzNB4E'
-rains_sticker = 'CAACAgIAAxkBAAEBwoZf_UlsfCSz9YJmqIVDNEMiaT_U7gACTQIAAladvQoLpdXvP7GXfx4E'
-
-owm_token = 'insert-owm-token-here'
-
-
-def my_weather(message):
+def get_forecast(message):
     owm = pyowm.OWM(owm_token)
     mgr = owm.weather_manager()
     default_city = 'Minsk'
@@ -43,12 +37,23 @@ def my_weather(message):
                        "In 6h it will be {} C, feels like {}, and {}.\n" \
                        "Toworrow it will be {} C, feels like {}, and {}.\n" \
                        "In 2 days it will be {} C, feels like {}, and {}.\n" \
-                       "In 3 days it will be {} C, feels like {}, and {}.\n".format(place, temp, feels_like, curr_status,
-                                                               my_fc_temps[1]['temp'], my_fc_temps[1]['feels_like'], my_fc_statuses[1],
-                                                               my_fc_temps[2]['temp'], my_fc_temps[2]['feels_like'], my_fc_statuses[2],
-                                                               my_fc_temps[8]['temp'], my_fc_temps[8]['feels_like'], my_fc_statuses[8],
-                                                               my_fc_temps[16]['temp'], my_fc_temps[16]['feels_like'], my_fc_statuses[16],
-                                                               my_fc_temps[24]['temp'], my_fc_temps[24]['feels_like'], my_fc_statuses[24])
+                       "In 3 days it will be {} C, feels like {}, and {}.\n".format(place, temp, feels_like,
+                                                                                    curr_status,
+                                                                                    my_fc_temps[1]['temp'],
+                                                                                    my_fc_temps[1]['feels_like'],
+                                                                                    my_fc_statuses[1],
+                                                                                    my_fc_temps[2]['temp'],
+                                                                                    my_fc_temps[2]['feels_like'],
+                                                                                    my_fc_statuses[2],
+                                                                                    my_fc_temps[8]['temp'],
+                                                                                    my_fc_temps[8]['feels_like'],
+                                                                                    my_fc_statuses[8],
+                                                                                    my_fc_temps[16]['temp'],
+                                                                                    my_fc_temps[16]['feels_like'],
+                                                                                    my_fc_statuses[16],
+                                                                                    my_fc_temps[24]['temp'],
+                                                                                    my_fc_temps[24]['feels_like'],
+                                                                                    my_fc_statuses[24])
         if feels_like <= -15:
             bot.send_sticker(message.from_user.id, cold_sticker)
         elif feels_like >= 27:
