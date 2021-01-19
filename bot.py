@@ -6,6 +6,7 @@ from weather_maps import get_weather_map
 from current_weather import get_current_weather
 from forecast import get_forecast
 from radar import get_latest_radar
+from multimodel import get_multimodel
 
 from bot_init import bot
 
@@ -39,6 +40,12 @@ def get_text_messages(message):
         get_forecast(message)
     elif msg[0] == '/radar':
         get_latest_radar(message)
+    elif msg[0] == '/multimodel':
+        get_multimodel(message, mode='multimodel')
+    elif msg[0] == '/multimodel_verbose':
+        get_multimodel(message, mode='multimodel_verbose')
+    elif msg[0] == '/meteogram':
+        get_multimodel(message, mode='meteogram')
     else:
         pass
 
