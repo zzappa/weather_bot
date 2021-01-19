@@ -62,3 +62,5 @@ for n in range(3):
     days.append(day[:-1] + '6')
     days.append(day[:-2] + '12')
     days.append(day[:-2] + '18')
+
+radar_url = 'https://meteoinfo.by/radar/'

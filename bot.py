@@ -5,6 +5,7 @@ from cities import cities
 from weather_maps import get_weather_map
 from current_weather import get_current_weather
 from forecast import get_forecast
+from radar import get_latest_radar
 
 from bot_init import bot
 
@@ -36,6 +37,8 @@ def get_text_messages(message):
             _send_error_msg()
     elif msg[0] == '/weather':
         get_forecast(message)
+    elif msg[0] == '/radar':
+        get_latest_radar(message)
     else:
         pass
 
