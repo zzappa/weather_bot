@@ -64,3 +64,7 @@ for n in range(3):
     days.append(day[:-2] + '18')
 
 radar_url = 'https://meteoinfo.by/radar/'
+
+meteogram_link = 'https://my.meteoblue.com/visimage/meteogram_web?look=KILOMETER_PER_HOUR%2CCELSIUS%2CMILLIMETER&apikey=5838a18e295d&temperature=C&windspeed=kmh&precipitationamount=mm&winddirection=3char&city=Minsk&iso2=by&lat=53.900002&lon=27.566700&asl=222&tz=Europe%2FMinsk&lang=en&sig=dbcada2a841254b6da8faf27fae14e33'
+multimodel_link = 'https://www.meteoblue.com/en/weather/forecast/multimodelensemble/minsk_belarus_625144'
+multimodel_verbose_link = 'https://www.meteoblue.com/en/weather/forecast/multimodel/minsk_belarus_625144'

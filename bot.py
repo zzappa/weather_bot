@@ -10,11 +10,13 @@ from multimodel import get_multimodel
 
 from bot_init import bot
 
+
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
     def _send_error_msg():
         bot.send_sticker(message.chat.id, random.choice(stickers))
         bot.send_message(message.from_user.id, "smth went wrong :(")
+
     msg = message.text.split(' ')
     if msg[0][1:] in weather_modes:
         try:
