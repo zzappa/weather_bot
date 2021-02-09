@@ -1,14 +1,13 @@
 import random
 
-from constants import weather_modes, stickers
+from bot_init import bot
 from cities import cities
-from weather_maps import get_weather_map
+from constants import weather_modes, stickers
 from current_weather import get_current_weather
 from forecast import get_forecast
-from radar import get_latest_radar
 from multimodel import get_multimodel
-
-from bot_init import bot
+from radar import get_latest_radar
+from weather_maps import get_weather_map
 
 
 @bot.message_handler(content_types=['text'])

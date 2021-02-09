@@ -1,7 +1,8 @@
+import logging
+from io import BytesIO
+
 import requests
 from PIL import Image
-from io import BytesIO
-import logging
 
 from constants import (weather_modes,
                        alt_models,

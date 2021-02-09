@@ -1,7 +1,8 @@
-import requests
-import re
 import html
 import logging
+import re
+
+import requests
 
 from cities import url
 

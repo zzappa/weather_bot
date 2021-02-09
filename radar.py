@@ -1,7 +1,8 @@
+import logging
+from io import BytesIO
+
 import requests
 from PIL import Image
-from io import BytesIO
-import logging
 from bs4 import BeautifulSoup
 
 from bot_init import bot
