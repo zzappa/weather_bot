@@ -1,6 +1,8 @@
 import logging
+import os
 from io import BytesIO
 
+import moviepy.editor as mp
 import requests
 from PIL import Image
 from bs4 import BeautifulSoup
@@ -47,16 +49,16 @@ def get_latest_radar(message):
 def get_radar_gif(message):
     if message.text == '/radar_grodno_gif':
         radar_url = radar_grodno_gif_url
-        title = f'[Анимация погодного радара ДМРЛ Гродно]({radar_url})'
+        title = 'Анимация погодного радара ДМРЛ Гродно'
     else:
         radar_url = radar_minsk_gif_url
-        title = f'[Анимация погодного радара ДМРЛ Минск]({radar_url})'
+        title = 'Анимация погодного радара ДМРЛ Минск'
     try:
-        img = requests.get(radar_url)
-        i = Image.open(BytesIO(img.content))
+        clip = mp.VideoFileClip(radar_url)
+        clip.write_videofile("weather_gif.mp4")
+        with open("./weather_gif.mp4", "rb") as misc:
+            f = misc.read()
+        bot.send_video(message.from_user.id, data=f, caption=title, parse_mode='Markdown')
+        os.remove("./weather_gif.mp4")
     except Exception:
-        i = None
-    if i:
-        bot.send_message(message.from_user.id, title, parse_mode='Markdown')
-    else:
         bot.reply_to(message, "Sorry, seems that radar is not working at the moment, try later.")
