@@ -6,7 +6,7 @@ from constants import weather_modes, stickers
 from current_weather import get_current_weather
 from forecast import get_forecast
 from multimodel import get_multimodel
-from radar import get_latest_radar
+from radar import get_latest_radar, get_radar_gif
 from weather_maps import get_weather_map
 
 
@@ -39,8 +39,10 @@ def get_text_messages(message):
             _send_error_msg()
     elif msg[0] == '/weather':
         get_forecast(message)
-    elif msg[0] == '/radar':
+    elif msg[0] in ('/radar_minsk', '/radar_grodno'):
         get_latest_radar(message)
+    elif msg[0] in ('/radar_minsk_gif', '/radar_grodno_gif'):
+        get_radar_gif(message)
     elif msg[0] == '/multimodel':
         get_multimodel(message, mode='multimodel')
     elif msg[0] == '/multimodel_verbose':
