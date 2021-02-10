@@ -2,3 +2,5 @@ Pillow>=8.1.0
 requests>=2.25.0
 pyTelegramBotAPI>=3.7.5
 pyowm>=3.1.1
+BeautifulSoup4>=4.9.3
+moviepy>=1.0.3
