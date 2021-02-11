@@ -34,8 +34,8 @@ def get_multimodel(message, mode):
         txt = 'Multimodel ensemble forecast for Minsk for 7 days.'
         get_image(message, multimodel_link, txt)
     elif mode == 'multimodel_verbose':
-        txt = 'Multimodel for Minsk for 3 days.'
+        txt = 'Multimodel ensemble forecast for Minsk for 3 days.'
         get_image(message, multimodel_verbose_link, txt)
     elif mode == "meteogram":
-        txt = 'Meteogram for Minsk for 5 days'
+        txt = 'Meteogram for Minsk for 5 days.'
         get_image(message, meteogram_link, txt, soup=False)

@@ -1,6 +1,7 @@
 import logging
 
 import pyowm
+from pyowm.commons import exceptions as pyowm_exc
 
 from bot_init import bot, owm_token
 from constants import cold_sticker, hot_sticker, rains_sticker
@@ -35,7 +36,7 @@ def get_forecast(message):
                        "and it feels like {}. Current conditions - {}.\n\n" \
                        "In 3h it will be {} C, feels like {}, and {}.\n" \
                        "In 6h it will be {} C, feels like {}, and {}.\n" \
-                       "Toworrow it will be {} C, feels like {}, and {}.\n" \
+                       "Tomorrow it will be {} C, feels like {}, and {}.\n" \
                        "In 2 days it will be {} C, feels like {}, and {}.\n" \
                        "In 3 days it will be {} C, feels like {}, and {}.\n".format(place, temp, feels_like,
                                                                                     curr_status,
@@ -61,5 +62,5 @@ def get_forecast(message):
         elif "rain" or "snow" in str(curr_status).lower():
             bot.send_sticker(message.from_user.id, rains_sticker)
         bot.reply_to(message, forecast)
-    except pyowm.commons.exceptions.UnauthorizedError:
+    except pyowm_exc.UnauthorizedError:
         bot.reply_to(message, 'Sorry, try again')

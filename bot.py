@@ -34,7 +34,7 @@ def get_text_messages(message):
     elif msg[0].lower() in cities:
         current_weather = get_current_weather(cities[msg[0].lower()])
         if current_weather:
-            bot.send_message(message.from_user.id, current_weather)
+            bot.reply_to(message, current_weather)
         else:
             _send_error_msg()
     elif msg[0] == '/weather':
