@@ -2,25 +2,14 @@ from io import BytesIO
 
 import requests
 from PIL import Image
-from bs4 import BeautifulSoup
 
 from bot_init import bot
 from constants import meteogram_link, multimodel_link, multimodel_verbose_link
 
 
-def get_image(message, link, txt, soup=True):
-    if not soup:
-        url = meteogram_link
-    else:
-        r = requests.get(link)
-        soup = BeautifulSoup(r.text, "html5lib")
-        links = []
-        for img in soup.findAll("a"):
-            if 'Minsk' in str(img):
-                links.append(img)
-        url = "https:" + links[2]['href']
+def get_image(message, link, txt):
     try:
-        r = requests.get(url)
+        r = requests.get(link)
         i = Image.open(BytesIO(r.content))
         text = f'{txt} [Source]({link})'
     except Exception:
@@ -38,4 +27,4 @@ def get_multimodel(message, mode):
         get_image(message, multimodel_verbose_link, txt)
     elif mode == "meteogram":
         txt = 'Meteogram for Minsk for 5 days.'
-        get_image(message, meteogram_link, txt, soup=False)
+        get_image(message, meteogram_link, txt)

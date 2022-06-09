@@ -1,48 +1,40 @@
-import logging
+import datetime
 from io import BytesIO
 
 import requests
 from PIL import Image
 
-from constants import (weather_modes,
-                       alt_models,
-                       wrf3,
-                       ukmet,
-                       gem,
-                       gfs,
-                       fact,
-                       days)
+from bot_init import bot
+from constants import weather_modes
 
 
-def get_weather_map(mode, interval='02', model='wrf3'):
-    link = _get_link(model)
-    if len(interval) not in (2, 3):
-        interval = '24'
-    if mode in weather_modes:
-        prefix = weather_modes[mode]
-        for day in days:
-            try:
-                url = f'{link}{prefix}_{day}_{interval}.png'
-                logging.warning(url)
-                logging.warning((mode, interval, model))
-                img = requests.get(url)
-                i = Image.open(BytesIO(img.content))
-                return i
-            except Exception:
-                pass
-        return
+def get_weather_map(message, mode):
 
-
-def _get_link(model='wrf3'):
-    if model.lower() in ("avia", "fact"):
-        link = fact
-    elif model.lower() in alt_models:
-        if model.lower() in ('gfs', 'ncep'):
-            link = gfs
-        elif model.lower() in ('gem', 'cmc'):
-            link = gem
-        else:
-            link = ukmet
+    if mode in ('temp', 'led'):
+        img = requests.get(weather_modes[mode])
+    elif mode == 'satellite':
+        today = datetime.date.today().strftime("%Y%m%d")
+        print(today)
+        now = datetime.datetime.now()
+        n = now.hour - 3
+        img = requests.get(f'{weather_modes[mode]}-{today}1100.jpg')
+        while b"""\xff""" not in img.content:
+            s1 = f'{n:02d}'
+            img = requests.get(f'{weather_modes[mode]}_{today}00_{s1}.png')
+            n -= 1
     else:
-        link = wrf3
-    return link
+        today = datetime.date.today().strftime("%Y%m%d")
+        print(today)
+        now = datetime.datetime.now()
+        n = now.hour - 3
+        img = requests.get(f'{weather_modes[mode]}_11111111_11.png')
+        while b"""\x89PNG""" not in img.content:
+            s1 = f'{n:02d}'
+            img = requests.get(f'{weather_modes[mode]}_{today}00_{s1}.png')
+            n -= 1
+    title = None
+    i = Image.open(BytesIO(img.content))
+    try:
+        bot.send_photo(message.from_user.id, i, title)
+    except:
+        bot.reply_to(message, "Sorry, seems that radar is not working at the moment, try later.")

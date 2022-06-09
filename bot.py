@@ -6,7 +6,7 @@ from constants import weather_modes, stickers
 from current_weather import get_current_weather
 from forecast import get_forecast
 from multimodel import get_multimodel
-from radar import get_latest_radar, get_radar_gif
+from radar import get_latest_radar
 from weather_maps import get_weather_map
 
 
@@ -18,31 +18,17 @@ def get_text_messages(message):
 
     msg = message.text.split(' ')
     if msg[0][1:] in weather_modes:
-        try:
-            if len(msg) == 3:
-                i = get_weather_map(msg[0][1:], msg[1], msg[2])
-            elif len(msg) == 2:
-                i = get_weather_map(msg[0][1:], msg[1])
-            else:
-                i = get_weather_map(msg[0][1:])
-            if i != None:
-                bot.send_photo(message.from_user.id, i)
-            else:
-                _send_error_msg()
-        except Exception:
-            _send_error_msg()
+        get_weather_map(message, msg[0][1:])
     elif msg[0].lower() in cities:
         current_weather = get_current_weather(cities[msg[0].lower()])
         if current_weather:
             bot.reply_to(message, current_weather)
         else:
             _send_error_msg()
-    elif msg[0] == '/weather':
+    elif msg[0] == '/forecast':
         get_forecast(message)
     elif msg[0] in ('/radar_minsk', '/radar_grodno'):
         get_latest_radar(message)
-    elif msg[0] in ('/radar_minsk_gif', '/radar_grodno_gif'):
-        get_radar_gif(message)
     elif msg[0] == '/multimodel':
         get_multimodel(message, mode='multimodel')
     elif msg[0] == '/multimodel_verbose':

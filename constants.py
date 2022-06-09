@@ -16,44 +16,25 @@ cold_sticker = 'CAACAgIAAxkBAAEBwoRf_Ulmdoyt4eGL7jGZEwveO2zJ2AACCQEAAladvQrWZlyD
 hot_sticker = 'CAACAgIAAxkBAAEBwoxf_VnZIyRszXaUx2rhMbwaXity3QACXAQAAuce7AUmmbsbikWzNB4E'
 rains_sticker = 'CAACAgIAAxkBAAEBwoZf_UlsfCSz9YJmqIVDNEMiaT_U7gACTQIAAladvQoLpdXvP7GXfx4E'
 
+temp = 'https://pogoda.by/files/maps/static/fact/RB_TNOW.png'
+led = 'https://pogoda.by/files/hydrology/kartaLed.jpg'
+
+# check all https://pogoda.by/observation/satellite
+satellite = 'https://pogoda.by/files/satellite/small_031'
+
+rains = 'https://pogoda.by/files/maps/static/fact/RB_PRC_SYN'
+winds = 'https://pogoda.by/files/maps/static/fact/AVIA_WIND'
+visibility = 'https://pogoda.by/files/maps/static/fact/AVIA_VISIB'
+clouds = 'https://pogoda.by/files/maps/static/fact/HIGH_CL'
+
 # all available weather maps
-weather_modes = {"rains": "APCP",
-                 "temp": "TMP2m",
-                 "wind": "GUST10m",
-                 "rains_sum": "APCPDG",
-                 "apcp_phase": "APCP_PHASE",
-                 "fog": "FG",
-                 "snow": "SNOD",
-                 "xrefd": "xREFD",
-                 "xrefd_mx": "REFC",
-                 "ot": "OT500_1000",
-                 "cape_ukr": "CAPE_UKR",
-                 "cape_180": "CAPE_180",
-                 "tmp925": "TMP925",
-                 "tmp850": "TMP850",
-                 "tmp700": "TMP700",
-                 "tmp500": "TMP500",
-                 "tmp300": "TMP300",
-                 "k_index": "KIND",
-                 "vis": "AVIA_VISIB",
-                 "cloud": "HIGH_CL"}
-
-# all available weather prediction models, with synonyms
-wrf3 = 'https://meteoinfo.by/maps/wrf3/images-00/'
-wrf = wrf3
-ukmet = 'https://meteoinfo.by/maps/egrr/'
-egrr = ukmet
-gfs = 'https://meteoinfo.by/maps/ncep/'
-ncep = gfs
-gem = 'https://meteoinfo.by/maps/cmc/'
-cmc = gem
-navgem = 'https://meteoinfo.by/maps/ngps/'
-ngps = navgem
-
-alt_models = ('egrr', 'ukmet', 'gfs', 'ncep', 'gem', 'cmc', 'ngps', 'navgem')
-
-# link to avia maps
-fact = 'https://meteoinfo.by/maps/fact/'
+weather_modes = {'rains': rains,
+                 'temp':temp,
+                 'satellite': satellite,
+                 'winds': winds,
+                 'led': led,
+                 'visibility': visibility,
+                 'clouds': clouds}
 
 days = []
 for n in range(3):
@@ -63,11 +44,9 @@ for n in range(3):
     days.append(day[:-2] + '12')
     days.append(day[:-2] + '18')
 
-radar_base_url = 'https://meteoinfo.by/radar/'
-radar_minsk_gif_url = 'https://meteoinfo.by/radar/UMMN/radar-map.gif'
-radar_grodno_url = 'https://www.meteoinfo.by/radar/?q=UMMG'
-radar_grodno_gif_url = 'https://www.meteoinfo.by/radar/UMMG/radar-map.gif'
+radar_base_url = 'https://pogoda.by/files/radars/static/26850/Radar_26850_MAP_PHEN'
+radar_grodno_url = 'https://pogoda.by/files/radars/static/26825/Radar_26825_MAP_PHEN'
 
 meteogram_link = 'https://my.meteoblue.com/visimage/meteogram_web?look=KILOMETER_PER_HOUR%2CCELSIUS%2CMILLIMETER&apikey=5838a18e295d&temperature=C&windspeed=kmh&precipitationamount=mm&winddirection=3char&city=Minsk&iso2=by&lat=53.900002&lon=27.566700&asl=222&tz=Europe%2FMinsk&lang=en&sig=dbcada2a841254b6da8faf27fae14e33'
-multimodel_link = 'https://www.meteoblue.com/en/weather/forecast/multimodelensemble/minsk_belarus_625144'
-multimodel_verbose_link = 'https://www.meteoblue.com/en/weather/forecast/multimodel/minsk_belarus_625144'
+multimodel_link = 'https://my.meteoblue.com/visimage/meteogram_ensemblemembers_hd?look=KILOMETER_PER_HOUR%2CCELSIUS%2CMILLIMETER&apikey=5838a18e295d&temperature=C&windspeed=kmh&precipitationamount=mm&winddirection=3char&city=Minsk&iso2=by&lat=53.9&lon=27.5667&asl=222&tz=Europe%2FMinsk&fcstlength=168&lang=en&ts=1640862148&sig=c4abe46e04721582cf6aa1d0e2e145c8'
+multimodel_verbose_link = 'https://my.meteoblue.com/visimage/meteogram_multiSimple_hd?look=KILOMETER_PER_HOUR%2CCELSIUS%2CMILLIMETER&apikey=5838a18e295d&temperature=C&windspeed=kmh&precipitationamount=mm&winddirection=3char&city=Minsk&iso2=by&lat=53.9&lon=27.5667&asl=222&tz=Europe%2FMinsk&dt=1&fcstlength=72&lang=en&ts=1640862185&sig=c42dcaf2bab6157a001298c9b3975a13'
